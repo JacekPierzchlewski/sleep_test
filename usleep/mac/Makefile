@@ -12,5 +12,7 @@ us_test: us_test.cpp
 us_testc: us_test.c
 	gcc us_test.c -o us_testc
 
+us10_test: us10_test.cpp
+	g++ us10_test.cpp -o us10_test
 
 
