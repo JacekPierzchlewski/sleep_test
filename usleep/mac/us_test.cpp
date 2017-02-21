@@ -1,16 +1,37 @@
+/*
+ * us_test.cpp [version 1.0]
+ *
+ * This is test of usleep(1) call. (Mac / C++ version)
+ * This test measures time of 1 million usleep(1) calls.
+ *
+ * read more on: www.orange-engineer.com
+ *
+ * (c) Jacek Pierzchlewski, 2017  jacek@pierzchlewski.com
+ * license: BSD-2-Clause.
+ */
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/time.h>
 #include <iomanip>
 
+// Declaration of one thousands and one million calls to usleep(1).
+// Definitions are at the end of the file.
 void usleep1M();
 void usleep1K();
-
 
 long unsigned int time_between_timestamps(timeval stTSStart, timeval stTSStop)
 {
 /*
- *  Compute time between timestamps in us
+ *  Compute time between timestamps in us.
+ *
+ *
+ *  Input: 
+ *    stTSStart [timeval structure] : start timestamp
+ *    stTSStop  [timeval structure] : stop timestamp
+ *
+ *  Output:
+ *.   tElapsed [long uint] : time between timestamps [us]
+ *
  */
     // The number of us in a second
     const uint64_t iSecus = 1000000;
@@ -55,9 +76,13 @@ int main()
 
 inline void usleep1K()
 {
-    usleep(1); usleep(1); usleep(1); usleep(1); usleep(1); 
-    usleep(1); usleep(1); usleep(1); usleep(1); usleep(1); 
-    usleep(1); usleep(1); usleep(1); usleep(1); usleep(1); 
+/*
+ * This function calls usleep(1) one thousand times; 
+ */    
+    // There is a thousand calls to usleep below.
+    usleep(1); usleep(1); usleep(1); usleep(1); usleep(1);
+    usleep(1); usleep(1); usleep(1); usleep(1); usleep(1);
+    usleep(1); usleep(1); usleep(1); usleep(1); usleep(1);
     usleep(1); usleep(1); usleep(1); usleep(1); usleep(1); 
     usleep(1); usleep(1); usleep(1); usleep(1); usleep(1); 
     usleep(1); usleep(1); usleep(1); usleep(1); usleep(1); 
@@ -259,6 +284,11 @@ inline void usleep1K()
 
 void usleep1M()
 {
+/*
+ * This function calls usleep(1) 1 million times
+ * by calling usleep1K() a thousand times. 
+ */    
+    // There is a thousand calls to usleep1K below.
     usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K(); 
     usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K(); 
     usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K(); 
