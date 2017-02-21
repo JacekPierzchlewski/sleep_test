@@ -15,4 +15,5 @@ us_testc: us_test.c
 us10_test: us10_test.cpp
 	g++ us10_test.cpp -o us10_test
 
-
+usx_test: usx_test.cpp
+	g++ usx_test.cpp -o usx_test
