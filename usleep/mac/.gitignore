@@ -4,3 +4,4 @@ us10_test
 usx_test
 *.dat
 *.so
+build/
