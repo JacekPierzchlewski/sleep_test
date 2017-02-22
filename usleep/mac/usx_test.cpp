@@ -2,7 +2,7 @@
  * usx_test.cpp [version 1.0]
  *
  * This is test of usleep calls (Mac version).
- * This test measures time of 1 thousand usleep() calls with a number of 
+ * This test measures time of 1 hundred usleep() calls with a number of 
  * arguments.
  *
  * The usleep() is called with the following arguments:
@@ -24,9 +24,9 @@
 #include <sys/time.h>
 #include <iomanip>
 
-// Declare the engine of the test - 1000 usleep calls
+// Declare the engine of the test - 100 usleep calls
 // Definition is at the end of the file
-void usleeps1000(uint);
+void usleeps100(uint);
 
 long unsigned int time_between_timestamps(timeval stTSStart, timeval stTSStop)
 {
@@ -79,37 +79,41 @@ double test_usleep(uint iUs)
     // Timestamps of start and stop 
     timeval stTSStart, stTSStop;
 
+    // The number of usleep calls
+    unsigned int nUsleep = 100;
+
     // The expected time (in miliseconds)
-    unsigned int tExpected_ms = iUs;
+    unsigned int tExpected_us = nUsleep * iUs;
+    unsigned int tExpected_ms = tExpected_us / 1000;
 
     // Start message
     if (tExpected_ms > 2000)
     {
         // Print in seconds
         double tExpected_s = tExpected_ms / 1000;
-        printf("Start: [A thousand usleep(%d) calls] Exp. time: %.3f s\n", 
+        printf("Start: [A hundred usleep(%d) calls] Exp. time: %.3f s\n", 
                iUs, tExpected_s);
     }
     else
     {
         // Print in muiliseconds
-        printf("Start: [A thousand usleep(%d) calls] Exp. time: %d ms\n", 
+        printf("Start: [A hundred usleep(%d) calls] Exp. time: %d ms\n", 
                iUs, tExpected_ms);
     }
-    // Call usleep 1 thousand times 
+    // Call usleep one hundred times 
     gettimeofday(&stTSStart, NULL);
-    usleeps1000(iUs);
+    usleeps100(iUs);
     gettimeofday(&stTSStop, NULL);
 
     // Print out finish message
     printf("....................................finish!\n");
 
-    // ** Compute the execution time of 1 thousand usleeps ** 
+    // ** Compute the execution time of one hundred usleeps ** 
     uint tElapsed_us = time_between_timestamps(stTSStart, stTSStop);  // [us]
     double tElapsed_ms = (double)tElapsed_us / 1000;                  // [ms]
 
     // Compute the average execution time of a single usleep
-    double tAvg_us = (double)tElapsed_us / 1000;    // [us]
+    double tAvg_us = (double)tElapsed_us / nUsleep;    // [us]
 
     // Compute the error 
     double dErr = (tAvg_us - iUs) / iUs;
@@ -119,13 +123,13 @@ double test_usleep(uint iUs)
     {
         // Print in seconds
         double tElapsed_s = tElapsed_ms / 1000;
-        printf("It was %.3f s (avg: %.3f us p.call error: %.2f) \n\n", 
+        printf("It was %.3f s (avg: %.3f us p.call error: %.3f) \n\n", 
                 tElapsed_s, tAvg_us, dErr);
     }
     else
     {
         // Print time in miliseconds
-        printf("It was %.3f ms (avg: %.3f us p.call error: %.2f) \n\n", 
+        printf("It was %.3f ms (avg: %.3f us p.call error: %.3f) \n\n", 
                 tElapsed_ms, tAvg_us, dErr);
     }
     return tElapsed_ms;
@@ -169,199 +173,21 @@ int main()
         test_usleep(300000);
         test_usleep(400000);
         test_usleep(500000);    // 1 usleep call = 500 ms
+        test_usleep(1000000);   // 1 usleep call = 1 s
 }
 
 
-void usleeps1000(unsigned int iUs)
+void usleeps100(unsigned int iUs)
 {
 /*
- *  This is the engine of the test  - one thousand calls to usleep.
+ *  This is the engine of the test  - one hundred calls to usleep.
  *
  *  Input: 
  *    iUs [unsigned int] : Argument for usleep
  *
  */ 
-    // There is one thousand calls to usleep below (till the end of file). 
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
-    usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
+
+    // There is one hundred calls to usleep below. 
     usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
     usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
     usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
