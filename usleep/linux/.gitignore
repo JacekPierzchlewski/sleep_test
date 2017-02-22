@@ -1,0 +1,7 @@
+us_test
+us_testc
+us10_test
+usx_test
+*.dat
+*.so
+build/
