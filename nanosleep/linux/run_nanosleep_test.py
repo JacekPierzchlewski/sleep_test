@@ -78,8 +78,7 @@ def plot_results(lNanoSleepArgs, ltAvg, lErrRel):
                     linewidth=2)
     hSubPlot.grid(True)
     hSubPlot.set_xlabel('nanosleep argument [ns]')
-    strTitle = "relative error"
-    hSubPlot.set_title(strTitle)
+    hSubPlot.set_title("relative error")
 
     plt.show(block=True)
 

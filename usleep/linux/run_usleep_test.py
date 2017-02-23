@@ -60,25 +60,25 @@ def plot_results(lUSleepArgs, ltAvg, lErrRel):
     # Plot the results: requested and real sleep times for usleep() function
     hFig = plt.figure(1)
     hSubPlot = hFig.add_subplot(111)
-    hSubPlot.loglog(np.array(lUSleepArgs), np.array(ltAvg), 'g-', linewidth=2)
-    hSubPlot.loglog(np.array(lUSleepArgs), np.array(lUSleepArgs), 'b-',
-                    linewidth=2)
+    hSubPlot.loglog(np.array(lUSleepArgs), np.array(ltAvg),
+                    'g-', linewidth=2, label="real")
+    hSubPlot.loglog(np.array(lUSleepArgs), np.array(lUSleepArgs),
+                    'b-', linewidth=2, label="requested")
     hSubPlot.grid(True)  # Grid on
     hSubPlot.set_xlabel('usleep argument [us]')
     hSubPlot.set_ylabel('time [us]')
-    strTitle = "the measured average exec. time and requested exec. time"
+    strTitle = "the measured average sleep time and requested sleep time"
     hSubPlot.set_title(strTitle)
+    hSubPlot.legend(loc="best")
 
     # Plot the results: relative errors
     hFig = plt.figure(2)
     hSubPlot = hFig.add_subplot(111)
-    hSubPlot.semilogx(np.array(lUSleepArgs), np.array(lErrRel), 'r-',
-                      linewidth=2)
+    hSubPlot.loglog(np.array(lUSleepArgs), np.array(lErrRel), 'r-', linewidth=2)
+
     hSubPlot.grid(True)
     hSubPlot.set_xlabel('usleep argument [us]')
-    hSubPlot.set_ylabel('time [us]')
-    strTitle = "relative error"
-    hSubPlot.set_title(strTitle)
+    hSubPlot.set_title("relative error")
 
     plt.show(block=True)
 
