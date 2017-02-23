@@ -4,7 +4,7 @@
 # Read more on www.orange-engineer.com
 #
 # (c) Jacek Pierzchlewski, 2017  jacek@pierzchlewski.com
-# license: BSD-2-Clause. 
+# license: BSD-2-Clause.
 
 # Compile usleep(1) tests (c++ version)
 us_test: us_test.cpp
@@ -23,6 +23,19 @@ usx_test: usx_test.cpp
 	g++ usx_test.cpp -o usx_test
 
 # Compile Python interface to usx_test.cpp
-python_module: compile_usx_test_py.py usx_test_py.cpp 
+python_module: compile_usx_test_py.py usx_test_py.cpp
 	python3 compile_usx_test_py.py build_ext --inplace
+
+# Clean up (without .dat file with results of the test)
+clean:
+	@rm -f us_test
+	@rm -f us10_test
+	@rm -f usx_test
+	@rm -f *.so
+	@rm -fR build
+
+# Clean up (without .dat file with results of the test)
+mrproper:
+	@make clean
+	@rm -f *.dat
 
