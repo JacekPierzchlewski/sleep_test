@@ -1,7 +1,7 @@
 /*
  * nanox_test_py.cpp [version 1.0]
  *
- * This is Python module which tests nanosleep() function.
+ * This is Python module which tests nanosleep() function (Linux version).
  *
  * read more on: www.orange-engineer.com
  *
