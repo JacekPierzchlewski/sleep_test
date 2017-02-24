@@ -28,11 +28,11 @@ long unsigned int time_between_timestamps(struct timeval stTSStart,
  *
  *
  *  Parameters:
- *    stTSStart [timeval structure] : start timestamp
- *    stTSStop  [timeval structure] : stop timestamp
+ *    stTSStart:  [timeval structure]  start timestamp
+ *    stTSStop:  [timeval structure]  stop timestamp
  *
  *  Returns:
- *.   tElapsed [long uint] : time between timestamps [us]
+ *.   tElapsed:  [long uint]  time between timestamps [us]
  *
  */
     unsigned int iTSsec, iTSus;

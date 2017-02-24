@@ -38,24 +38,24 @@ long unsigned int time_between_timestamps(timeval stTSStart, timeval stTSStop)
  *
  *
  *  Parameters:
- *    stTSStart [timeval structure] : start timestamp
- *    stTSStop  [timeval structure] : stop timestamp
+ *    stTSStart:  [timeval structure]  start timestamp
+ *    stTSStop:  [timeval structure]  stop timestamp
  *
  *  Returns:
- *    tElapsed [long uint] : time between timestamps [us]
+ *    tElapsed:  [long uint]  time between timestamps [us]
  *
  */
     // The number of us in a second
     const uint64_t iSECUS = 1000000;
 
     // Get start timestamp [in us]
-    uint iTSsec = (uint)stTSStart.tv_sec;   // timestamp in seconds
-    uint iTSus = (uint)stTSStart.tv_usec;   // timestamp in useconds
+    unsigned int iTSsec = (unsigned int)stTSStart.tv_sec;   // timestamp in s
+    unsigned int iTSus = (unsigned int)stTSStart.tv_usec;   // timestamp in us
     long unsigned int tStart_us = (long unsigned int)(iTSsec*iSECUS+iTSus);
 
     // Get stop timestamp [in us]
-    iTSsec = (uint)stTSStop.tv_sec;    // timestamp in seconds
-    iTSus = (uint)stTSStop.tv_usec;    // timestamp in useconds
+    iTSsec = (unsigned int)stTSStop.tv_sec;    // timestamp in s
+    iTSus = (unsigned int)stTSStop.tv_usec;    // timestamp in us
     long unsigned int tStop_us = (long unsigned int)(iTSsec*iSECUS+iTSus);
 
     // Compute the elapsed timestamp
@@ -72,10 +72,10 @@ double test_usleep(uint iUs)
  * It prints out the expected and real elapsed time.
  *
  *  Parameters:
- *    iUs [uint] : argument for usleep function
+ *    iUs:  [uint]  argument for usleep function
  *
  *  Returns:
- *    tElapsed_ms [double] : elapsed time [ms]
+ *    tElapsed_ms:  [double]  elapsed time [ms]
  *
  */
 
@@ -186,7 +186,7 @@ void usleeps_100(unsigned int iUs)
  *  This is the engine of the test  - one hundred calls to usleep.
  *
  *  Parameters:
- *    iUs [unsigned int] : Argument for usleep
+ *    iUs:  [unsigned int]  Argument for usleep
  *
  */
 

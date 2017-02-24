@@ -25,9 +25,8 @@
 #include <iomanip>
 #include <Python.h>
 
-/* Declare the engine of the test - one hundred usleep calls
- * (Definition is at the end of file)
- */
+// Declare the engine of the test - one hundred usleep calls
+// (Definition is at the end of file)
 void usleeps_100(unsigned int);
 
 
@@ -38,11 +37,11 @@ long unsigned int time_between_timestamps(timeval stTSStart, timeval stTSStop)
  *
  *
  *  Parameters:
- *    stTSStart [timeval structure] : start timestamp
- *    stTSStop  [timeval structure] : stop timestamp
+ *    stTSStart:  [timeval structure]  start timestamp
+ *    stTSStop:  [timeval structure]  stop timestamp
  *
  *  Returns:
- *    tElapsed [long uint] : time between timestamps [us]
+ *    tElapsed:  [long unsigned int] time between timestamps [us]
  *
  */
     // The number of us in a second
@@ -54,8 +53,8 @@ long unsigned int time_between_timestamps(timeval stTSStart, timeval stTSStop)
     long unsigned int tStart_us = (long unsigned int)(iTSsec*iSECUS+iTSus);
 
     // Get stop timestamp [in us]
-    iTSsec = (unsigned int)stTSStop.tv_sec;    // timestamp in seconds
-    iTSus = (unsigned int)stTSStop.tv_usec;    // timestamp in useconds
+    iTSsec = (unsigned int)stTSStop.tv_sec;    // timestamp in s
+    iTSus = (unsigned int)stTSStop.tv_usec;    // timestamp in us
     long unsigned int tStop_us = (long unsigned int)(iTSsec*iSECUS+iTSus);
 
     // Compute the elapsed timestamp
@@ -71,10 +70,10 @@ double test_usleep(unsigned int iUs)
  * a given argument iUs.
  *
  *  Parameters:
- *    iUs [uint] : argument for usleep function
+ *    iUs:  [unsigned int]  argument for usleep function
  *
  *  Returns:
- *    tAvg_us [double] : the average sleep time of a single usleep [us]
+ *    tAvg_us:  [double]  the average sleep time of a single usleep [us]
  *
  */
 
@@ -107,11 +106,11 @@ run_test_usleep_py(PyObject *self, PyObject *args)
  *
  *  Parameters:
  *    Python tuple with:
- *      iUs [uint] : argument for usleep function
+ *      iUs:  [uint]  argument for usleep function
  *
  *  Returns:
  *    Python tuple with:
- *      tElapsed_ms [double] : elapsed time [ms]
+ *      tElapsed_ms:  [double]  elapsed time [ms]
  *
  */
 
@@ -145,10 +144,10 @@ static struct PyModuleDef usxTestModule = {
  *   Python module parameters
  */
    PyModuleDef_HEAD_INIT,
-   "usxTest",     /* name of module */
-   NULL,          /* module documentation, may be NULL */
-   -1,            /* size of per-interpreter state of the module,
-                     or -1 if the module keeps state in global variables. */
+   "usxTest",     // name of module
+   NULL,          // module documentation, may be NULL
+   -1,            // size of per-interpreter state of the module
+
    usxTestMethods
 };
 
@@ -168,7 +167,7 @@ void usleeps_100(unsigned int iUs)
  *  This is the engine of the test  - one hundred calls to usleep.
  *
  *  Parameters:
- *    iUs [unsigned int] : Argument for usleep
+ *    iUs:  [unsigned int]  Argument for usleep
  *
  */
     usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
@@ -192,4 +191,3 @@ void usleeps_100(unsigned int iUs)
     usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
     usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs); usleep(iUs);
 }
-
