@@ -19,8 +19,8 @@
 
 // Declaration of one thousands and one million calls to usleep(1).
 // Definitions are at the end of the file.
-void usleep1M();
-void usleep1K();
+void usleep_1M();
+void usleep_1K();
 
 long unsigned int time_between_timestamps(timeval stTSStart, timeval stTSStop)
 {
@@ -28,26 +28,26 @@ long unsigned int time_between_timestamps(timeval stTSStart, timeval stTSStop)
  *  Compute time between timestamps in us.
  *
  *
- *  Input:
+ *  Parameters:
  *    stTSStart [timeval structure] : start timestamp
  *    stTSStop  [timeval structure] : stop timestamp
  *
- *  Output:
+ *  Returns:
  *.   tElapsed [long uint] : time between timestamps [us]
  *
  */
     // The number of us in a second
-    const uint64_t iSecus = 1000000;
+    const uint64_t iSECUS = 1000000;
 
     // Get start timestamp [in us]
     uint iTSsec = (uint)stTSStart.tv_sec;   // timestamp in seconds
     uint iTSus = (uint)stTSStart.tv_usec;   // timestamp in useconds
-    long unsigned int tStart = (long unsigned int)(iTSsec*iSecus+iTSus);
+    long unsigned int tStart = (long unsigned int)(iTSsec*iSECUS+iTSus);
 
     // Get stop timestamp [in us]
     iTSsec = (uint)stTSStop.tv_sec;    // timestamp in seconds
     iTSus = (uint)stTSStop.tv_usec;    // timestamp in useconds
-    long unsigned int tStop = (long unsigned int)(iTSsec*iSecus+iTSus);
+    long unsigned int tStop = (long unsigned int)(iTSsec*iSECUS+iTSus);
 
     // Compute the elapsed timestamp
     long unsigned int tElapsed = tStop - tStart;
@@ -63,7 +63,7 @@ int main()
     // Declare timestamp of start and stop and get the start timestamp
     timeval stTSStart, stTSStop;
     gettimeofday(&stTSStart, NULL);
-    usleep1M();
+    usleep_1M();
 
     // Get the timestamp of stop
     gettimeofday(&stTSStop, NULL);
@@ -77,7 +77,7 @@ int main()
     return 0;
 }
 
-inline void usleep1K()
+inline void usleep_1K()
 {
 /*
  * This function calls usleep(1) one thousand times;
@@ -285,211 +285,211 @@ inline void usleep1K()
     usleep(1); usleep(1); usleep(1); usleep(1); usleep(1);
 }
 
-void usleep1M()
+void usleep_1M()
 {
 /*
  * This function calls usleep(1) 1 million times
- * by calling usleep1K() a thousand times.
+ * by calling usleep_1K() a thousand times.
  */
     // There is a thousand calls to usleep1K below.
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
-    usleep1K(); usleep1K(); usleep1K(); usleep1K(); usleep1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
+    usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K(); usleep_1K();
 }

@@ -28,7 +28,7 @@
 /* Declare the engine of the test - one hundred usleep calls
  * (Definition is at the end of file)
  */
-void usleeps100(unsigned int);
+void usleeps_100(unsigned int);
 
 
 long unsigned int time_between_timestamps(timeval stTSStart, timeval stTSStop)
@@ -37,26 +37,26 @@ long unsigned int time_between_timestamps(timeval stTSStart, timeval stTSStop)
  *  Compute time between timestamps in us.
  *
  *
- *  Input:
+ *  Parameters:
  *    stTSStart [timeval structure] : start timestamp
  *    stTSStop  [timeval structure] : stop timestamp
  *
- *  Output:
+ *  Returns:
  *    tElapsed [long uint] : time between timestamps [us]
  *
  */
     // The number of us in a second
-    const uint64_t iSecus = 1000000;
+    const uint64_t iSECUS = 1000000;
 
     // Get start timestamp [in us]
     unsigned int iTSsec = (unsigned int)stTSStart.tv_sec;   // timestamp in s
     unsigned int iTSus = (unsigned int)stTSStart.tv_usec;   // timestamp in us
-    long unsigned int tStart_us = (long unsigned int)(iTSsec*iSecus+iTSus);
+    long unsigned int tStart_us = (long unsigned int)(iTSsec*iSECUS+iTSus);
 
     // Get stop timestamp [in us]
     iTSsec = (unsigned int)stTSStop.tv_sec;    // timestamp in seconds
     iTSus = (unsigned int)stTSStop.tv_usec;    // timestamp in useconds
-    long unsigned int tStop_us = (long unsigned int)(iTSsec*iSecus+iTSus);
+    long unsigned int tStop_us = (long unsigned int)(iTSsec*iSECUS+iTSus);
 
     // Compute the elapsed timestamp
     long unsigned int tElapsed_us = tStop_us - tStart_us;
@@ -70,10 +70,10 @@ double test_usleep(unsigned int iUs)
  * This function tests execution time of usleep(iUs) function with
  * a given argument iUs.
  *
- *  Input:
+ *  Parameters:
  *    iUs [uint] : argument for usleep function
  *
- *  Output:
+ *  Returns:
  *    tAvg_us [double] : the average sleep time of a single usleep [us]
  *
  */
@@ -82,18 +82,18 @@ double test_usleep(unsigned int iUs)
     timeval stTSStart, stTSStop;
 
     // The number of usleep calls
-    unsigned int nUsleep = 100;
+    unsigned int nUSLEEP = 100;
 
     // Call usleep one hundred times
     gettimeofday(&stTSStart, NULL);
-    usleeps100(iUs);
+    usleeps_100(iUs);
     gettimeofday(&stTSStop, NULL);
 
     // ** Compute the sleep time of one hundred usleeps **
     unsigned int tSleep_us = time_between_timestamps(stTSStart, stTSStop);
 
     // Compute the average sleep time of a single usleep
-    double tAvg_us = (double)tSleep_us / nUsleep;    // [us]
+    double tAvg_us = (double)tSleep_us / nUSLEEP;    // [us]
 
     return tAvg_us;
 }
@@ -105,11 +105,11 @@ run_test_usleep_py(PyObject *self, PyObject *args)
 /*
  * This is the Python interface to 'test_usleep'.
  *
- *  Input:
+ *  Parameters:
  *    Python tuple with:
  *      iUs [uint] : argument for usleep function
  *
- *  Output:
+ *  Returns:
  *    Python tuple with:
  *      tElapsed_ms [double] : elapsed time [ms]
  *
@@ -130,7 +130,7 @@ run_test_usleep_py(PyObject *self, PyObject *args)
 }
 
 
-static PyMethodDef usxTest_Methods[] = {
+static PyMethodDef usxTestMethods[] = {
 /*
  *   Python methods definition
  */
@@ -140,7 +140,7 @@ static PyMethodDef usxTest_Methods[] = {
 };
 
 
-static struct PyModuleDef usxTest_Module = {
+static struct PyModuleDef usxTestModule = {
 /*
  *   Python module parameters
  */
@@ -149,7 +149,7 @@ static struct PyModuleDef usxTest_Module = {
    NULL,          /* module documentation, may be NULL */
    -1,            /* size of per-interpreter state of the module,
                      or -1 if the module keeps state in global variables. */
-   usxTest_Methods
+   usxTestMethods
 };
 
 
@@ -159,15 +159,15 @@ PyInit_usxTest(void)
 /*
  *   Python module definition
  */
-   return PyModule_Create(&usxTest_Module);
+   return PyModule_Create(&usxTestModule);
 }
 
-void usleeps100(unsigned int iUs)
+void usleeps_100(unsigned int iUs)
 {
 /*
  *  This is the engine of the test  - one hundred calls to usleep.
  *
- *  Input:
+ *  Parameters:
  *    iUs [unsigned int] : Argument for usleep
  *
  */

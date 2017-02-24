@@ -29,7 +29,7 @@
 
 // Declare the engine of the test - 100 usleep calls
 // Definition is at the end of the file
-void usleeps100(uint);
+void usleeps_100(uint);
 
 long unsigned int time_between_timestamps(timeval stTSStart, timeval stTSStop)
 {
@@ -37,26 +37,26 @@ long unsigned int time_between_timestamps(timeval stTSStart, timeval stTSStop)
  *  Compute time between timestamps in us.
  *
  *
- *  Input:
+ *  Parameters:
  *    stTSStart [timeval structure] : start timestamp
  *    stTSStop  [timeval structure] : stop timestamp
  *
- *  Output:
+ *  Returns:
  *    tElapsed [long uint] : time between timestamps [us]
  *
  */
     // The number of us in a second
-    const uint64_t iSecus = 1000000;
+    const uint64_t iSECUS = 1000000;
 
     // Get start timestamp [in us]
     uint iTSsec = (uint)stTSStart.tv_sec;   // timestamp in seconds
     uint iTSus = (uint)stTSStart.tv_usec;   // timestamp in useconds
-    long unsigned int tStart_us = (long unsigned int)(iTSsec*iSecus+iTSus);
+    long unsigned int tStart_us = (long unsigned int)(iTSsec*iSECUS+iTSus);
 
     // Get stop timestamp [in us]
     iTSsec = (uint)stTSStop.tv_sec;    // timestamp in seconds
     iTSus = (uint)stTSStop.tv_usec;    // timestamp in useconds
-    long unsigned int tStop_us = (long unsigned int)(iTSsec*iSecus+iTSus);
+    long unsigned int tStop_us = (long unsigned int)(iTSsec*iSECUS+iTSus);
 
     // Compute the elapsed timestamp
     long unsigned int tElapsed_us = tStop_us - tStart_us;
@@ -71,10 +71,10 @@ double test_usleep(uint iUs)
  * a given argument iUs.
  * It prints out the expected and real elapsed time.
  *
- *  Input:
+ *  Parameters:
  *    iUs [uint] : argument for usleep function
  *
- *  Output:
+ *  Returns:
  *    tElapsed_ms [double] : elapsed time [ms]
  *
  */
@@ -83,10 +83,10 @@ double test_usleep(uint iUs)
     timeval stTSStart, stTSStop;
 
     // The number of usleep calls
-    unsigned int nUsleep = 100;
+    const unsigned int nUSLEEP = 100;
 
     // The expected time (in miliseconds)
-    unsigned int tExpected_us = nUsleep * iUs;
+    unsigned int tExpected_us = nUSLEEP * iUs;
     unsigned int tExpected_ms = tExpected_us / 1000;
 
     // Start message
@@ -105,7 +105,7 @@ double test_usleep(uint iUs)
     }
     // Call usleep one hundred times
     gettimeofday(&stTSStart, NULL);
-    usleeps100(iUs);
+    usleeps_100(iUs);
     gettimeofday(&stTSStop, NULL);
 
     // Print out finish message
@@ -116,7 +116,7 @@ double test_usleep(uint iUs)
     double tElapsed_ms = (double)tElapsed_us / 1000;                  // [ms]
 
     // Compute the average execution time of a single usleep
-    double tAvg_us = (double)tElapsed_us / nUsleep;    // [us]
+    double tAvg_us = (double)tElapsed_us / nUSLEEP;    // [us]
 
     // Compute the error
     double dErr = (tAvg_us - iUs) / iUs;
@@ -180,12 +180,12 @@ int main()
 }
 
 
-void usleeps100(unsigned int iUs)
+void usleeps_100(unsigned int iUs)
 {
 /*
  *  This is the engine of the test  - one hundred calls to usleep.
  *
- *  Input:
+ *  Parameters:
  *    iUs [unsigned int] : Argument for usleep
  *
  */
