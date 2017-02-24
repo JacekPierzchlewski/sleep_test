@@ -1,7 +1,7 @@
 /*
  * usx_test_py.cpp [version 1.0]
  *
- * This is Python interface to usleep() test (Mac version).
+ * This is Python interface to usleep() test (Linux version).
  * This test measures time of one hundred usleep() calls with a number of
  * arguments.
  *
