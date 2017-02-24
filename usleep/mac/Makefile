@@ -31,6 +31,7 @@ clean:
 	@rm -f us_test
 	@rm -f us10_test
 	@rm -f usx_test
+	@rm -f us_testc
 	@rm -f *.so
 	@rm -fR build
 

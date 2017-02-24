@@ -29,6 +29,7 @@ python_module: compile_usx_test_py.py usx_test_py.cpp
 # Clean up (without .dat file with results of the test)
 clean:
 	@rm -f us_test
+	@rm -f us_testc
 	@rm -f us10_test
 	@rm -f usx_test
 	@rm -f *.so
