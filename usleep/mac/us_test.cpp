@@ -25,25 +25,25 @@ long unsigned int time_between_timestamps(timeval stTSStart, timeval stTSStop)
  *  Compute time between timestamps in us.
  *
  *
- *  Input:
- *    stTSStart [timeval structure] : start timestamp
- *    stTSStop  [timeval structure] : stop timestamp
+ *  Parameters:
+ *    stTSStart:  [timeval structure]  start timestamp
+ *    stTSStop:   [timeval structure]  stop timestamp
  *
- *  Output:
- *.   tElapsed [long uint] : time between timestamps [us]
+ *  Returns:
+ *.   tElapsed:  [long uint]  time between timestamps [us]
  *
  */
     // The number of us in a second
     const uint64_t iSECUS = 1000000;
 
     // Get start timestamp [in us]
-    uint iTSsec = (uint)stTSStart.tv_sec;   // timestamp in seconds
-    uint iTSus = (uint)stTSStart.tv_usec;   // timestamp in useconds
+    unsigned int iTSsec = (unsigned int)stTSStart.tv_sec;  // timestamp in s
+    unsigned int iTSus = (unsigned int)stTSStart.tv_usec;  // timestamp in us
     long unsigned int tStart = (long unsigned int)(iTSsec*iSECUS+iTSus);
 
     // Get stop timestamp [in us]
-    iTSsec = (uint)stTSStop.tv_sec;    // timestamp in seconds
-    iTSus = (uint)stTSStop.tv_usec;    // timestamp in useconds
+    iTSsec = (unsigned int)stTSStop.tv_sec;    // timestamp in s
+    iTSus = (unsigned int)stTSStop.tv_usec;    // timestamp in us
     long unsigned int tStop = (long unsigned int)(iTSsec*iSECUS+iTSus);
 
     // Compute the elapsed timestamp
@@ -60,7 +60,7 @@ int main()
     // Declare timestamp of start and stop and get the start timestamp
     timeval stTSStart, stTSStop;
     gettimeofday(&stTSStart, NULL);
-    usleep1M();
+    usleep_1M();
 
     // Get the timestamp of stop
     gettimeofday(&stTSStop, NULL);
