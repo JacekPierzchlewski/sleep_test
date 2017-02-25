@@ -23,12 +23,12 @@ def nanosleep_test(iSleepArg):
     Run a single nanosleep() test.
 
     Arguments:
-        iSleepArg:  [number] time settings for nanosleep() function
+        iSleepArg:  [number]  time settings for nanosleep() function
 
     Return:
-        tAvg_us:  [number]  the average time of a single nanosleep() call
-        iErrRel:  [number]  the relative error between requested sleep time
-                            and real sleep time
+        tAvg_us:  [number]   the average time of a single nanosleep() call
+        iErrRel:  [number]   the relative error between requested sleep time
+                             and real sleep time
     """
 
     # Measure the average time of a single nanosleep() call
@@ -49,10 +49,10 @@ def plot_results(lNanoSleepArgs, ltAvg, lErrRel):
         2. relative errors between requested sleep time and real sleep time
 
     Arguments:
-        lNanoSleepArgs:  [list] time settings for nanosleep() function
-        ltAvg:        [list] the average time of nanosleep() calls
-        lErrRel:      [list] the relative errors between requested sleep time
-                             and real sleep time
+        lNanoSleepArgs:  [list]  time settings for nanosleep() function
+        ltAvg:        [list]  the average time of nanosleep() calls
+        lErrRel:      [list]  the relative errors between requested sleep time
+                              and real sleep time
     Return:
         none
     """

@@ -23,7 +23,7 @@ def usleep_test(iSleepArg):
     Run a single usleep() test.
 
     Arguments:
-        iSleepArg:  [number] argument for usleep() function
+        iSleepArg:  [number]  argument for usleep() function
 
     Return:
         tAvg_us:  [number]  the average time of a single usleep() call
@@ -48,10 +48,10 @@ def plot_results(lUSleepArgs, ltAvg, lErrRel):
         2. relative errors between requested sleep time and real sleep time
 
     Arguments:
-        lUSleepArgs:  [list] arguments for usleep() function
-        ltAvg:        [list] the average time of usleep() calls
-        lErrRel:      [list] the relative errors between requested sleep time
-                             and real sleep time
+        lUSleepArgs:  [list]  arguments for usleep() function
+        ltAvg:        [list]  the average time of usleep() calls
+        lErrRel:      [list]  the relative errors between requested sleep time
+                              and real sleep time
 
     Return:
         none
