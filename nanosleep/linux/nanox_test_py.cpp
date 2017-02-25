@@ -133,7 +133,7 @@ static PyMethodDef nanoxTestMethods[] = {
 };
 
 
-static struct PyModuleDef nanoxTestModule = {
+static struct PyModuleDef stNanoxTestModule = {
 /*
  *   Python module parameters
  */
@@ -152,7 +152,7 @@ PyInit_nanoxTest(void)
 /*
  *   Python module definition
  */
-   return PyModule_Create(&nanoxTestModule);
+   return PyModule_Create(&stNanoxTestModule);
 }
 
 

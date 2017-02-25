@@ -139,7 +139,7 @@ static PyMethodDef usxTestMethods[] = {
 };
 
 
-static struct PyModuleDef usxTestModule = {
+static struct PyModuleDef stUsxTestModule = {
 /*
  *   Python module parameters
  */
@@ -158,7 +158,7 @@ PyInit_usxTest(void)
 /*
  *   Python module definition
  */
-   return PyModule_Create(&usxTestModule);
+   return PyModule_Create(&stUsxTestModule);
 }
 
 void usleeps_100(unsigned int iUs)
