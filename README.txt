@@ -6,7 +6,7 @@
 
 ================================================================================
 I. INTRO
-Files in the directory test how precise are functions which put computer to
+Software in this project tests how precise are functions which put computer to
 sleep.
 
 read more on: www.orange-engineer.com
