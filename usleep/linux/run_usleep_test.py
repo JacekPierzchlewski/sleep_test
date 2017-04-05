@@ -78,7 +78,7 @@ def plot_results(lUSleepArgs, ltAvg, lErrRel):
 
     hSubPlot.grid(True)
     hSubPlot.set_xlabel('usleep argument [us]')
-    hSubPlot.set_title("relative error")
+    hSubPlot.set_title("usleep relative error")
 
     plt.show(block=True)
 
