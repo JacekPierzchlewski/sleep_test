@@ -27,7 +27,7 @@
 
 // Declare the engine of the test - one hundred usleep calls
 // (Definition is at the end of file)
-void usleeps_100(unsigned int);
+inline void usleeps_100(unsigned int) __attribute__((always_inline));
 
 
 long unsigned int time_between_timestamps(timeval stTSStart, timeval stTSStop)

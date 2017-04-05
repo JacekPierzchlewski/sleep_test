@@ -17,7 +17,7 @@
 // Declaration of one thousands and one million calls to usleep(1).
 // Definitions are at the end of the file.
 void usleep_1M();
-void usleep_1K();
+inline void usleep_1K() __attribute__((always_inline));
 
 long unsigned int time_between_timestamps(timeval stTSStart, timeval stTSStop)
 {
