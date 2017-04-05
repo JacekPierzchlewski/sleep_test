@@ -46,7 +46,7 @@ def main():
     # Plot the results: relative errors
     hFig = plt.figure(2)
     hSubPlot = hFig.add_subplot(111)
-    hSubPlot.loglog(np.array(lNanoSleepArgs), np.array(lErrRel), 'r-',
+    hSubPlot.loglog(np.array(lNanoSleepArgs), np.array(lErrRel), 'k-',
                     linewidth=2)
     hSubPlot.grid(True)
     hSubPlot.set_xlabel('nanosleep argument [ns]')
